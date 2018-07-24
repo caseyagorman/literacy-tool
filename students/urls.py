@@ -20,4 +20,6 @@ url(r'word/(?P<pk>[0-9]+)/$', views.WordDetailView.as_view(), name='word_detail'
 
 url(r'word/add/$', views.WordCreate.as_view(), name='word-add'),
 
+url(r'formpage/$', views.wordform, name='form'),
+
 url(r'word/delete/(?P<pk>[0-9]+)/$', views.WordDelete.as_view(), name='word-delete'),]
