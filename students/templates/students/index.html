@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block students_active %}active{% endblock %}
+
+{% block body %}
+<div class="students-container container-fluid">
+
+    <!-- Students -->
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>These are your students:</h3>
+        </div>
+            {% for student in all_students %}
+                <div class="col-sm-4 col-lg-2">
+                            <h2>{{ student.first_name }}</h2>
+                            <h4>{{ student.last_name}}</h4>
+
+                            <!--Details -->
+                            <a href="{% url 'students:student_detail' student.id %}" class="btn btn-primary btn-sm">View</a>
+                            <!-- Delete Student -->
+
+                </div>
+            {% endfor %}
+          </div>
+        </div>
+
+{%endblock%}
