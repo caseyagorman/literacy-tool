@@ -1,6 +1,9 @@
 from django.conf.urls import url
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 app_name = "students"
+
 
 
 urlpatterns = [
@@ -22,4 +25,4 @@ url(r'word/add/$', views.WordCreate.as_view(), name='word-add'),
 
 url(r'formpage/$', views.wordform, name='form'),
 
-url(r'word/delete/(?P<pk>[0-9]+)/$', views.WordDelete.as_view(), name='word-delete'),]
+url(r'word/delete/(?P<pk>[0-9]+)/$', views.WordDelete.as_view(), name='word-delete'),] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

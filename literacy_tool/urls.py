@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.HomePage.as_view(), name= "home"),
@@ -24,4 +26,4 @@ urlpatterns = [
     url(r'^accounts/',include('django.contrib.auth.urls')),
     url(r'^thanks/$', views.ThanksPage.as_view(),name="thanks"),
     url(r'^test/$', views.TestPage.as_view(),name="test")
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
