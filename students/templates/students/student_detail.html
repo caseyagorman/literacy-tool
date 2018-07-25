@@ -6,12 +6,23 @@
           <h2> {{student.first_name}} {{student.last_name}}
           <form action="{% url 'students:student-delete' student.id %}" method="post" style="display: inline;">
             {% csrf_token %}
-            <input type="hidden" name="student_id" value="{{ student.id }}" />
+            <input type="hidden" name="student_id" value="{{ student.id }}">
             <button type="submit" onclick="return confirm('Are you sure you want to delete this?')" class="btn btn-default btn-sm">
               <span class="glyphicon glyphicon-trash"></span>
             </button>
           </form>
+
+          <form action="{% url 'students:form' student.id %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <input type="hidden" name="student_id" value="{{ student.id }}">
+            <button type="submit"  class="btn btn-default btn-sm">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+          </form>
           </h2>
+
+
+
 
 {% for word in student.words.all %}
 <li><a href="{% url 'students:word_detail' word.id %}">{{word.word}}</a></li>
