@@ -3,10 +3,12 @@ from django import forms
 from .models import Word, Student
 
 
-class student_form(forms.ModelForm):
+class StudentEditForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = '__all__'
+        fields = ["first_name", "last_name", "words"]
+    words = forms.ModelMultipleChoiceField(queryset=Word.objects.all(), widget=forms.CheckboxSelectMultiple,)
+    #     words = forms.ModelMultipleChoiceField(queryset=Word.objects.all(), widget=forms.CheckboxSelectMultiple,)
 
 # class WordForm(forms.ModelForm):
 #     class Meta:

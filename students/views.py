@@ -16,7 +16,8 @@ from . import forms
 from braces.views import SelectRelatedMixin
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from forms import student_form
+from forms import StudentEditForm
+from django.http import HttpResponseRedirect
 
 User= get_user_model()
 
@@ -105,18 +106,19 @@ class WordDelete(DeleteView):
 #     model = Student
 #     form_class = WordForm
 
-def student_edit(request, objectid):
-    # link = 'Student'
-    student_inst = Student.objects.get(id=objectid)
-    form = student_form(instance=student_inst)
+def student_edit(request, pk):
+    student = Student.objects.get(pk=pk)
+    form = StudentEditForm()
+    User = request.user
 
     if request.method == 'POST':
-        f = student_form(request.POST, instance=student_inst)
-        if f.is_valid():
-            f.save()
-            return HttpResponseRedirect('/student')
-    return render(request, "student_edit.html",
-                  {"form": form})
+        form = StudentEditForm(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/thanks/')
+
+    return render(request, "students/student_edit.html",
+                  {"pk": pk, "form": form})
 
 #
 #

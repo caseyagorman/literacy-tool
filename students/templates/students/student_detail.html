@@ -12,9 +12,9 @@
             </button>
           </form>
 
-          <form action="{% url 'students:form' student.id %}" method="post" style="display: inline;">
+          <form action="{% url 'students:form' student.pk %}" method="post" style="display: inline;">
             {% csrf_token %}
-            <input type="hidden" name="student_id" value="{{ student.id }}">
+            <input type="hidden" name="student_id" value="{{ student.pk }}">
             <button type="submit"  class="btn btn-default btn-sm">
               <span class="glyphicon glyphicon-plus"></span>
             </button>
