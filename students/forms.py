@@ -6,8 +6,16 @@ from .models import Word, Student
 class StudentEditForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ["first_name", "last_name", "words"]
+        fields = ["words"]
     words = forms.ModelMultipleChoiceField(queryset=Word.objects.all(), widget=forms.CheckboxSelectMultiple,)
+    def __init__(self, *args, **kwargs):
+        words_list = self.instance.words_list
+        print('words_list', words_list)
+    # self.fields['words'].choices = self.fields['databases'].choices=[(brand[0], brand[1]) for brand in share_to_brands]
+    # self.initial['databases']=[brand[2] for brand in share_to_brands]
+    # print(self.initial['databases'])
+    # words = forms.Model
+
     #     words = forms.ModelMultipleChoiceField(queryset=Word.objects.all(), widget=forms.CheckboxSelectMultiple,)
 
 # class WordForm(forms.ModelForm):

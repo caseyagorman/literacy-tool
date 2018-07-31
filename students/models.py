@@ -8,6 +8,7 @@ from django.db.models import CharField, Model
 from accounts.models import User
 from django.contrib import auth
 
+
 User = get_user_model()
 
 from django import template
@@ -17,6 +18,7 @@ register = template.Library()
 class Word(models.Model):
     word = models.CharField(max_length=250, default= "", blank=True)
     user = models.ForeignKey('auth.User', default= "")
+
 
     def get_absolute_url(self):
         return reverse('students:word_detail', kwargs={'pk':self.pk})
@@ -30,6 +32,8 @@ class Student(models.Model):
     last_name = models.CharField(max_length=250, default="", blank=True)
     grade = models.CharField(max_length=5, default="", blank=True)
     words = models.ManyToManyField(Word, default="", blank=True)
+
+
 
     def get_absolute_url(self):
         return reverse('students:student_detail', kwargs={'pk':self.pk})
